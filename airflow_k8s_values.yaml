@@ -1,0 +1,28 @@
+airflow:
+  executor: Kubernetes
+  image:
+    repository: puckel/docker-airflow
+    tag: latest
+    pullPolicy: IfNotPresent
+  config:
+    AIRFLOW__KUBERNETES__WORKER_SERVICE_ACCOUNT_NAME: airflow
+    AIRFLOW__KUBERNETES__DAGS_VOLUME_CLAIM: airflow
+    AIRFLOW__KUBERNETES__NAMESPACE: airflow
+    AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY: puckel/docker-airflow
+    AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG: latest
+    AIRFLOW__KUBERNETES__WORKER_CONTAINER_IMAGE_PULL_POLICY: IfNotPresent
+    AIRFLOW__KUBERNETES__LOGS_VOLUME_CLAIM: airflow-logs
+    AIRFLOW__CORE__EXECUTOR: KubernetesExecutor
+workers:
+  enabled: false
+persistence:
+  ## enable persistance storage
+  enabled: true
+  existingClaim: ''
+logsPersistence:
+  ##
+  ## enable persistance storage
+  enabled: true
+  accessMode: ReadWriteMany
+redis:
+  enabled: false

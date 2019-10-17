@@ -17,7 +17,7 @@ docker pull puckel/docker-airflow:latest
 docker tag puckel/docker-airflow:latest puckel/docker-airflow:1.10.4
 docker build --rm -t puckel/docker-airflow:latest .
 
-helm install --namespace "airflow" --name "airflow" --version 4.1.2 -f airflowk8s_values.yaml stable/airflow
+helm install --namespace "airflow" --name "airflow" --version 4.1.2 -f airflow_k8s_values.yaml stable/airflow
 
 helm ls
 
